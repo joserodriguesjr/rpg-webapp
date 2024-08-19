@@ -1,0 +1,218 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Armor {
+  defense: String!
+  description: String!
+  effects: String!
+  name: String!
+  value: String!
+}
+
+type Attributes {
+  car: Int!
+  con: Int!
+  des: Int!
+  for: Int!
+  int: Int!
+  sab: Int!
+}
+
+type BattlePlayer {
+  energyCurrent: Int!
+  energyMax: Int!
+  healthCurrent: Int!
+  healthMax: Int!
+  icon: String!
+  id: Int!
+  name: String!
+  position: Position!
+  visible: Boolean!
+}
+
+input BattlePlayerInput {
+  id: Int!
+  position: PositionInput!
+}
+
+type Character {
+  armorClass: Int!
+  armors: [String!]!
+  attributes: Attributes!
+  energyCurrent: Int!
+  energyMax: Int!
+  equipment: Equipment
+  events: [ImportantEvent!]!
+  followers: [Follower!]
+  healthCurrent: Int!
+  healthDicesCurrent: Int!
+  healthMax: Int!
+  id: Int!
+  image: String!
+  inspiration: Boolean!
+  items: [String!]!
+  name: String!
+  notes: String!
+  occupation: Occupation
+  occupationLevel: Int!
+  occupationName: String!
+  proficiencies: [Proficiency!]!
+  rumours: String
+  story: String!
+  virus: Virus!
+  visible: Boolean!
+  weapons: [String!]!
+}
+
+type Consequence {
+  description: String!
+  level: Int!
+  name: String!
+}
+
+type Equipment {
+  armors: [Armor!]!
+  items: [Item!]!
+  weapons: [Weapon!]!
+}
+
+input ExchangeEquipmentInput {
+  equipment: String!
+  from: String!
+  to: String!
+  type: String!
+}
+
+type Follower {
+  quantity: Int!
+  type: String!
+}
+
+type ImportantEvent {
+  description: String
+  event: String!
+}
+
+input ImportantEventInput {
+  description: String
+  event: String!
+}
+
+type Item {
+  description: String!
+  effects: String!
+  name: String!
+  value: String!
+}
+
+type Language {
+  meaning: String!
+  word: String!
+}
+
+type Message {
+  body: String!
+  from: String!
+  id: Int!
+  time: String!
+  to: String!
+}
+
+type Mutation {
+  exchangeEquipment(exchangeEquipmentInput: ExchangeEquipmentInput!): [Character!]!
+  sendMessage(sendMessageInput: SendMessageInput!): [Message!]!
+  toogleVisible(name: String!): [BattlePlayer!]!
+  updateBattleStatus(battleStatus: BattlePlayerInput!): [BattlePlayer!]!
+  updateCharacterInfo(updateCharacterInfoInput: UpdateCharacterInfoInput!): Character!
+  updateCharacterStatus(updateCharacterStatusInput: UpdateCharacterStatusInput!): Character!
+}
+
+type Occupation {
+  healthDice: String!
+  name: String!
+  proficiency: Int!
+  resistanceTest: String!
+  skills: [Skill!]!
+}
+
+type Position {
+  col: Int!
+  row: Int!
+}
+
+input PositionInput {
+  col: Int!
+  row: Int!
+}
+
+type Power {
+  description: String!
+  name: String!
+}
+
+type Proficiency {
+  ability: String!
+  name: String!
+  trained: Boolean!
+}
+
+type Query {
+  battleStatus: [BattlePlayer!]!
+  character(name: String!): Character!
+  characters: [Character!]!
+  messages(name: String!): [Message!]!
+}
+
+input SendMessageInput {
+  name: String!
+  question: String!
+}
+
+type Skill {
+  description: String!
+  level: Int!
+  name: String!
+}
+
+input SubscribeCharacterInput {
+  id: Int!
+  name: String!
+}
+
+type Subscription {
+  battleStatus: [BattlePlayer!]!
+  characterUpdated(subscribeCharacterInput: SubscribeCharacterInput!): Character!
+  messages(subscribeCharacterInput: SubscribeCharacterInput!): [Message!]!
+}
+
+input UpdateCharacterInfoInput {
+  events: [ImportantEventInput!]
+  id: Int!
+  notes: String
+  story: String
+}
+
+input UpdateCharacterStatusInput {
+  energyCurrent: Int!
+  healthCurrent: Int!
+  healthDicesCurrent: Int!
+  id: Int!
+  inspiration: Boolean!
+}
+
+type Virus {
+  assimilation: Int!
+  consequences: [Consequence!]!
+  languages: [Language!]!
+  name: String!
+  powers: [Power!]!
+}
+
+type Weapon {
+  damage: String!
+  description: String!
+  effects: String!
+  name: String!
+  value: String!
+}
